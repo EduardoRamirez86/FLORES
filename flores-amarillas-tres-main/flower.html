@@ -7,14 +7,101 @@
     <link rel="stylesheet" href="css/main.css" />
     <link rel="icon" href="img/flowers.png" type="image/x-icon" />
     <title>Flower</title>
+    <style>
+      body {
+        background-color: #001d3d; /* Fondo oscuro para las estrellas */
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+      }
+  
+      .estrella {
+        width: 20px;
+        height: 20px;
+        background-color: yellow;
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        position: absolute;
+        opacity: 0; /* Inicialmente ocultas */
+        animation: parpadeo 3s infinite, moverAleatorio 10s infinite;
+      }
+  
+      @keyframes parpadeo {
+        0% { opacity: 0; }
+        50% { opacity: 1; }
+        100% { opacity: 0; }
+      }
+  
+      @keyframes moverAleatorio {
+        0% {
+          /* Estrellas empiezan fuera de la pantalla */
+          top: calc(100vh * -1);
+          left: calc(100vw * -1);
+        }
+        50% {
+          /* Estrellas en la mitad de su movimiento */
+          top: calc(100vh * random());
+          left: calc(100vw * random());
+        }
+        100% {
+          /* Estrellas en la nueva posición aleatoria */
+          top: calc(100vh * random());
+          left: calc(100vw * random());
+        }
+      }
+    </style>
+
   </head>
   <body class="container">
-    <audio src="sound/ChristianBasso&HaienQiu-Flowers.mp3" autoplay></audio>
+    <audio id="audio" src="sound/ChristianBasso&HaienQiu-Flowers.mp3"></audio>
+
+<script>
+    window.onload = function() {
+        document.getElementById("audio").play();
+    };
+</script>
+
+  
+  
+
+    <script>
+      // Función para crear estrellas de forma aleatoria
+      function crearEstrellas(cantidad) {
+        for (let i = 0; i < cantidad; i++) {
+          const estrella = document.createElement('div');
+          estrella.classList.add('estrella');
+          
+          // Posición aleatoria de la estrella dentro de la pantalla
+          const top = Math.random() * window.innerHeight; // Altura aleatoria
+          const left = Math.random() * window.innerWidth; // Ancho aleatorio
+          
+          estrella.style.top = `${top}px`;
+          estrella.style.left = `${left}px`;
+          
+          // Retraso aleatorio para cada estrella
+          const delay = Math.random() * 10; // Retraso aleatorio entre 0 y 10 segundos
+          estrella.style.animationDelay = `${delay}s`;
+  
+          // Agregar la estrella al cuerpo del documento
+          document.body.appendChild(estrella);
+        }
+      }
+  
+      // Crear 50 estrellas de manera aleatoria
+      crearEstrellas(50);
+    </script>
+
     <div id="lyrics">
      
     </div>
-    <h1 class="titulo">Estas flores amarillas son un reflejo de la alegría que traes a mi vida. <br> <br>
-      Gracias por iluminar mis días con tu presencia.</h1>
+    <h1 class="titulo">TE AMO ESTRELLITA
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br> eres los 14 de febrero y los 24 de cada mes
+      <br> lo has sido por años y los seras el resto de la vida 
+      <br> eres mi valentin y mi amor 
+      <br> ⭐/💜
+    </h1>
+
   
     <div class="night"></div>
     <div class="flowers">
