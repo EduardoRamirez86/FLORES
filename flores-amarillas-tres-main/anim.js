@@ -4,33 +4,13 @@ var lyrics = document.querySelector("#lyrics");
 
 // Array de objetos que contiene cada línea y su tiempo de aparición en segundos
 var lyricsData = [
-  { text: "At the time", time: 15 },
-  { text: "The whisper of birds", time: 18 },
-  { text: "Lonely before the sun cried", time: 27 },
-  { text: "Fell from the sky", time: 32 },
-  { text: "Like water drops", time: 33 },
-  { text: "Where I'm now? I don't know why", time: 41 },
-  { text: "Nice butterflies in my hands", time: 47 },
-  { text: "Too much light for twilight", time: 54 },
-  { text: "In the mood for the flowers love", time: 59 },
-  { text: "That vision", time: 67 },
-  { text: "Really strong, blew my mind", time: 72 },
-  { text: "Silence Let me see what it was", time: 78 },
-  { text: "I only want to live in clouds", time: 83 },
-  { text: "Where I'm now? I don't know why", time: 91 },
-  { text: "Nice butterflies in my hands", time: 97 },
-  { text: "Too much light for twilight", time: 104 },
-  { text: "In the mood for the flowers love", time: 108 },
-  { text: "At the time", time: 144 },
-  { text: "The whisper of birds", time: 148 },
-  { text: "Lonely before the sun cried", time: 153 },
-  { text: "Fell from the sky", time: 158 },
-  { text: "Like water drops", time: 164 },
-  { text: "Where I'm now? I don't know why", time: 169 },
-  { text: "Nice butterflies in my hands", time: 176 },
-  { text: "Too much light for twilight", time: 183 },
-  { text: "In the mood for the flowers", time: 188 },
-  { text: "Love.", time: 140 },
+  { text: "I'm findin' ways to articulate", time: 15 },
+  { text: "The feeling I'm goin' through", time: 18 },
+  { text: "But I don't know how to make it stop", time: 22 },
+  { text: "I'm just gonna die for you", time: 25 },
+  { text: "Die for you, die for you, die for you", time: 30 },
+  { text: "Oh, oh, yeah...", time: 35 },
+  // Agregar más letras según corresponda...
 ];
 
 // Animar las letras
@@ -57,8 +37,7 @@ function updateLyrics() {
 
 setInterval(updateLyrics, 1000);
 
-//funcion titulo
-// Función para ocultar el título después de 216 segundos
+// Función para ocultar el título después de un cierto tiempo
 function ocultarTitulo() {
   var titulo = document.querySelector(".titulo");
   titulo.style.animation =
@@ -70,5 +49,6 @@ function ocultarTitulo() {
 
 // Llama a la función después de 216 segundos (216,000 milisegundos)
 setTimeout(ocultarTitulo, 216000);
+
 
 
