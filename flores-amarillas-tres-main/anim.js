@@ -1,41 +1,53 @@
-// Sincronizar las letras con la canción
-var audio = document.querySelector("audio");
-var lyrics = document.querySelector("#lyrics");
+window.onload = function () {
+  // Crear elementos necesarios
+  var body = document.body;
+  var audio = document.createElement("audio");
+  audio.src = "sound/The Weeknd - Die For You (Sub. Español).mp3";
+  audio.controls = true;
+  body.appendChild(audio);
 
-// Array de objetos que contiene cada línea y su tiempo de aparición en segundos
-var lyricsData = [
-  { text: "I'm findin' ways to articulate", time: 15 },
-  { text: "The feeling I'm goin' through", time: 18 },
-  { text: "But I don't know how to make it stop", time: 22 },
-  { text: "I'm just gonna die for you", time: 25 },
-  { text: "Die for you, die for you, die for you", time: 30 },
-  { text: "Oh, oh, yeah...", time: 35 },
-  // Agregar más letras según corresponda...
-];
+  var lyrics = document.createElement("div");
+  lyrics.id = "lyrics";
+  body.appendChild(lyrics);
 
-// Animar las letras
-function updateLyrics() {
-  var time = Math.floor(audio.currentTime);
-  var currentLine = lyricsData.find(
-    (line) => time >= line.time && time < line.time + 6
-  );
+  // Array de objetos que contiene cada línea de la letra y su tiempo de aparición
+  var lyricsData = [
+    { text: "I'm findin' ways to articulate", time: 0 },
+    { text: "The feeling I'm goin' through", time: 5 },
+    { text: "I just can't say I don't love you", time: 10 },
+    { text: "Cause I love you, yeah", time: 15 },
+    { text: "It's so hard to say it, but I do", time: 20 },
+    { text: "And I need you, yeah", time: 25 },
+    { text: "I don't even know why", time: 30 },
+    { text: "I don't even know how", time: 35 },
+    { text: "I just know that I do", time: 40 },
+    { text: "But I know I die for you", time: 45 },
+    { text: "I die for you", time: 50 },
+    { text: "I'm just in love with you", time: 55 },
+    { text: "I die for you", time: 60 },
+    { text: "But I die for you", time: 65 },
+    { text: "I die for you", time: 70 },
+  ];
 
-  if (currentLine) {
-    // Calcula la opacidad basada en el tiempo en la línea actual
-    var fadeInDuration = 0.1; // Duración del efecto de aparición en segundos
-    var opacity = Math.min(1, (time - currentLine.time) / fadeInDuration);
+  // Función para actualizar las letras basadas en el tiempo del audio
+  function updateLyrics() {
+    var currentTime = Math.floor(audio.currentTime); // Obtener el tiempo actual de la canción
+    var currentLine = lyricsData.find(function (line) {
+      return currentTime >= line.time && currentTime < line.time + 5;
+    });
 
-    // Aplica el efecto de aparición
-    lyrics.style.opacity = opacity;
-    lyrics.innerHTML = currentLine.text;
-  } else {
-    // Restablece la opacidad y el contenido si no hay una línea actual
-    lyrics.style.opacity = 0;
-    lyrics.innerHTML = "";
+    if (currentLine) {
+      // Actualizar el texto de las letras
+      lyrics.textContent = currentLine.text;
+    }
   }
-}
 
-setInterval(updateLyrics, 1000);
+  // Ejecutar la función updateLyrics cada 100 ms para mantener la sincronización
+  setInterval(updateLyrics, 100);
+
+  // Reproducir la canción cuando se cargue la página
+  audio.play();
+};
 
 // Función para ocultar el título después de un cierto tiempo
 function ocultarTitulo() {
